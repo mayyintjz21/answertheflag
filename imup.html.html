@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>CTF Flag Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #bae6fd; /* biru muda */
+            color: #1e293b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background 0.5s ease;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            width: 320px;
+        }
+        input {
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #60a5fa;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 28px; /* BESAR */
+        }
+        #retryBtn {
+            margin-top: 20px;
+            display: none;
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="formArea">
+        <h2>Masukkan Flag 💙</h2>
+        <input type="text" id="flagInput" placeholder="Masukkan flag di sini...">
+        <button onclick="cekFlag()">Submit</button>
+    </div>
+
+    <div id="result"></div>
+    <button id="retryBtn" onclick="resetForm()">Masukkan Jawaban Lagi</button>
+</div>
+
+<script>
+function cekFlag() {
+    const input = document.getElementById("flagInput").value;
+    const result = document.getElementById("result");
+    const formArea = document.getElementById("formArea");
+    const retryBtn = document.getElementById("retryBtn");
+
+    const flagBenar = "IMUP{k0r34nf1lmb1z0n3}";
+
+    formArea.style.display = "none";
+
+    if (input === flagBenar) {
+        document.body.style.background = "#86efac"; // hijau
+        result.style.color = "green";
+        result.textContent = "GOOD JOB TEMAN 👍😊👍";
+    } else {
+        document.body.style.background = "#fca5a5"; // merah
+        result.style.color = "red";
+        result.textContent = "SALAH WLEE 🤪";
+    }
+
+    retryBtn.style.display = "inline-block";
+}
+
+function resetForm() {
+    const formArea = document.getElementById("formArea");
+    const result = document.getElementById("result");
+    const retryBtn = document.getElementById("retryBtn");
+    const input = document.getElementById("flagInput");
+
+    input.value = "";
+    result.textContent = "";
+
+    document.body.style.background = "#bae6fd"; // balik ke biru
+
+    formArea.style.display = "block";
+    retryBtn.style.display = "none";
+}
+</script>
+
+</body>
+</html>
